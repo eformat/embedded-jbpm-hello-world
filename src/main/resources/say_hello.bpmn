@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- origin at X=0.0 Y=0.0 -->
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:ext="http://org.eclipse.bpmn2/ext" xmlns:xs="http://www.w3.org/2001/XMLSchema" id="Definitions_1" exporter="org.eclipse.bpmn2.modeler.core" exporterVersion="1.1.4.Final" targetNamespace="http://org.eclipse.bpmn2/default/process">
+  <bpmn2:itemDefinition id="ItemDefinition_46" isCollection="false" structureRef="java.lang.String"/>
+  <bpmn2:process id="say_hello" name="say-hello" isExecutable="false">
+    <bpmn2:startEvent id="StartEvent_1" name="Start Event">
+      <bpmn2:extensionElements>
+        <ext:style ext:shapeForeground="#007f00" ext:shapeBackground="#80ff80" ext:labelForeground="#007f00" ext:labelFont="arial,9.0,-,-" ext:routingStyle="Manhattan"/>
+      </bpmn2:extensionElements>
+      <bpmn2:outgoing>SequenceFlow_2</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:endEvent id="EndEvent_1" name="End Event">
+      <bpmn2:extensionElements>
+        <ext:style ext:shapeForeground="#7f0000" ext:shapeBackground="#ff8080" ext:labelForeground="#7f0000" ext:labelFont="arial,9.0,-,-" ext:routingStyle="Manhattan"/>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>SequenceFlow_3</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:scriptTask id="ScriptTask_1" name="Say hello">
+      <bpmn2:extensionElements>
+        <ext:style ext:shapeForeground="#546778" ext:shapeBackground="#d4e7f8" ext:labelForeground="#546778" ext:labelFont="arial,9.0,-,-" ext:routingStyle="Manhattan"/>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>SequenceFlow_2</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_3</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="InputOutputSpecification_3">
+        <bpmn2:dataInput id="DataInput_1" itemSubjectRef="ItemDefinition_46" name="name"/>
+        <bpmn2:inputSet id="_InputSet_3" name="Input Set 3">
+          <bpmn2:dataInputRefs>DataInput_1</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="OutputSet_1" name="Output Set 1"/>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="DataInputAssociation_1">
+        <bpmn2:sourceRef>Property_1</bpmn2:sourceRef>
+        <bpmn2:targetRef>DataInput_1</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:script>kcontext.setVariable(&quot;welcomeText&quot;,&quot;Hello, &quot; + name);
+
+System.out.println(&quot;Hello, &quot; + name);</bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:sequenceFlow id="SequenceFlow_2" sourceRef="StartEvent_1" targetRef="ScriptTask_1"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_3" sourceRef="ScriptTask_1" targetRef="EndEvent_1"/>
+    <bpmn2:property id="Property_1" itemSubjectRef="ItemDefinition_46" name="name"/>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1" name="Default Process Diagram">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="say_hello">
+      <bpmndi:BPMNShape id="BPMNShape_1" bpmnElement="StartEvent_1">
+        <dc:Bounds height="36.0" width="36.0" x="100.0" y="100.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_1">
+          <dc:Bounds height="14.0" width="58.0" x="89.0" y="136.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_2" bpmnElement="EndEvent_1">
+        <dc:Bounds height="36.0" width="36.0" x="500.0" y="100.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_2">
+          <dc:Bounds height="14.0" width="55.0" x="491.0" y="136.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ScriptTask_1" bpmnElement="ScriptTask_1">
+        <dc:Bounds height="50.0" width="110.0" x="265.0" y="245.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_3">
+          <dc:Bounds height="14.0" width="50.0" x="295.0" y="263.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_2" bpmnElement="SequenceFlow_2" sourceElement="BPMNShape_1" targetElement="BPMNShape_ScriptTask_1">
+        <di:waypoint xsi:type="dc:Point" x="118.0" y="136.0"/>
+        <di:waypoint xsi:type="dc:Point" x="118.0" y="270.0"/>
+        <di:waypoint xsi:type="dc:Point" x="265.0" y="270.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_4"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_3" bpmnElement="SequenceFlow_3" sourceElement="BPMNShape_ScriptTask_1" targetElement="BPMNShape_2">
+        <di:waypoint xsi:type="dc:Point" x="375.0" y="270.0"/>
+        <di:waypoint xsi:type="dc:Point" x="518.0" y="270.0"/>
+        <di:waypoint xsi:type="dc:Point" x="518.0" y="136.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_5"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
