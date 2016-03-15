@@ -18,24 +18,29 @@ public class HelloWorld {
 	//note: these are just to simplify the sayHello method 
 	//definitely not how you'd want to structure your class in the real world
 	KieSession ksession;
+	KieBase kieBase;
 	ProcessInstance processInstance;
 	
 	public String sayHello(String string) {
 		
-		standupKieSession();
-		callBPMProcess("michael");
+		standupKieBase();
+		startKieSession();
+		startProcess("michael");
 		
 		return retrieveProcessResult();
 		
 	}
 	
-	void standupKieSession() {
+	void standupKieBase() {
 		KieHelper kieHelper = new KieHelper();
-		KieBase kieBase = kieHelper.addResource(ResourceFactory.newClassPathResource("say_hello.bpmn"), ResourceType.BPMN2).build();
+		this.kieBase = kieHelper.addResource(ResourceFactory.newClassPathResource("say_hello.bpmn"), ResourceType.BPMN2).build();
+	}
+
+	void startKieSession() {
 		this.ksession = kieBase.newKieSession();
 	}
-	
-	void callBPMProcess(String name) {
+
+	void startProcess(String name) {
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("name", name);
 		this.processInstance = (ProcessInstance)ksession.startProcess("say_hello", parameters);
