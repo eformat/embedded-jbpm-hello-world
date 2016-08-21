@@ -25,7 +25,7 @@ public class HelloWorld {
 		
 		standupKieBase();
 		startKieSession();
-		startProcess("michael");
+		startProcess(string);
 		
 		return retrieveProcessResult();
 		
