@@ -1,4 +1,4 @@
-package com.michaelrice.ebpm;
+package com.example.bpms;
 
 import java.util.HashMap;
 import java.util.Map;

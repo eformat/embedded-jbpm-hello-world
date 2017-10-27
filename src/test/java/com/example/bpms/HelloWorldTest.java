@@ -1,8 +1,10 @@
-package com.michaelrice.ebpm;
+package com.example.bpms;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
+
+import com.example.bpms.HelloWorld;
 
 
 public class HelloWorldTest {
@@ -10,7 +12,7 @@ public class HelloWorldTest {
 	@Test
 	public void testHelloWorld() {
 		HelloWorld helloWorld = new HelloWorld();
-		assertEquals("Hello, nico", helloWorld.sayHello("nico"));
+		assertEquals("Hello, mike", helloWorld.sayHello("mike"));
 	}
 
 }
